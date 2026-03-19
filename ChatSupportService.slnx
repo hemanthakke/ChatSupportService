@@ -1,4 +1,3 @@
 <Solution>
-  <Project Path="../ChatSupportService.Tests.Unit/ChatSupportService.Tests.Unit.csproj" />
   <Project Path="ChatSupportService.csproj" />
 </Solution>
