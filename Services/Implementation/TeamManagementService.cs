@@ -7,12 +7,14 @@ namespace ChatSupportService.Services.Implementation
     {
         private readonly List<Team> _teams;
         private readonly Team _overflowTeam;
+        private readonly ITimeProviderService _timeProviderService;
 
-        public TeamManagementService()
+        public TeamManagementService(ITimeProviderService timeProviderService = null)
         {
             // Team Initialization
+            _timeProviderService = timeProviderService ?? new SystemTimeProviderService();
             _teams = InitializeTeams();
-            _overflowTeam = InitializeOverflowTeam();
+            _overflowTeam = InitializeOverflowTeam();            
         }
 
         private List<Team> InitializeTeams()
@@ -85,7 +87,7 @@ namespace ChatSupportService.Services.Implementation
 
         public List<Team> GetActiveTeams()
         {
-            var currentHour = DateTime.Now.Hour;
+            var currentHour = _timeProviderService.GetCurrentTime().Hour;
 
             var activeShift = currentHour switch
             {
