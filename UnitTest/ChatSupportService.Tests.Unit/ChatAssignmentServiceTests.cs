@@ -1,10 +1,8 @@
-﻿
-using ChatSupportService.Models;
+﻿using ChatSupportService.Models;
 using ChatSupportService.Services.BackgroundServices;
 using ChatSupportService.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System.ComponentModel.DataAnnotations;
 
 namespace ChatSupportService.Tests.Unit
 {
@@ -13,7 +11,7 @@ namespace ChatSupportService.Tests.Unit
         private readonly Mock<IChatQueue> _mockMainQueue;
         private readonly Mock<IChatQueue> _mockOverflowQueue;
         private readonly Mock<ITeamManagementService> _mockTeamManagementService;
-        private readonly Mock<IChatRequestService> _mcockChatRequestService;
+        private readonly Mock<IChatRequestService> _mockChatRequestService;
         private readonly Mock<ILogger<ChatAssignmentService>> _mockLogger;
         private readonly ChatAssignmentService _chatAssignmentService;
 
@@ -22,14 +20,14 @@ namespace ChatSupportService.Tests.Unit
             _mockMainQueue = new Mock<IChatQueue>();
             _mockOverflowQueue = new Mock<IChatQueue>();
             _mockTeamManagementService = new Mock<ITeamManagementService>();
-            _mcockChatRequestService = new Mock<IChatRequestService>();
+            _mockChatRequestService = new Mock<IChatRequestService>();
             _mockLogger = new Mock<ILogger<ChatAssignmentService>>();
 
             _chatAssignmentService = new ChatAssignmentService(
                     _mockMainQueue.Object,
                     _mockOverflowQueue.Object,
                     _mockTeamManagementService.Object,
-                    _mcockChatRequestService.Object,
+                    _mockChatRequestService.Object,
                     _mockLogger.Object
             );
         }
