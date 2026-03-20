@@ -24,6 +24,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddSingleton<IChatQueue>(sp => new InMemoryChatQueue()); // Main Queue
 builder.Services.AddSingleton<IChatQueue>(sp => new InMemoryChatQueue()); // Overflow Queue
 builder.Services.AddSingleton<ITeamManagementService, TeamManagementService>();
+builder.Services.AddSingleton<ITimeProviderService, SystemTimeProviderService>();
 builder.Services.AddSingleton<IOfficeHoursService, OfficeHoursService>();
 builder.Services.AddSingleton<IChatRequestService, ChatRequestService>();
 
